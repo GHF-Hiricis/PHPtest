@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Adress;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
 
 class AdressesController extends Controller
 {
@@ -13,7 +15,8 @@ class AdressesController extends Controller
      */
     public function index()
     {
-        //
+        return view('adresses')
+        ->with('adresses',Adress::orderBy('updated_at','DESC')->get());
     }
 
     /**
@@ -34,7 +37,38 @@ class AdressesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $error='';
+        $request->validate([
+            'zip_code'=>'required',
+        ]);
+
+        $adress = Adress::where('zip_code',$request->input('zip_code'))->first();
+
+        if(!$adress){
+            $zip = str_replace("-","",$request->input('zip_code'));
+            $response = Http::get('viacep.com.br/ws/'.$zip.'/json');
+            if(!$response->json('erro')){
+                Adress::create([
+                    "zip_code"=>$response->json('cep'),
+                    "adress"=>$response->json('logradouro'),
+                    "neighborhood"=>$response->json('bairro'),
+                    "complement"=>$response->json('complemento'),
+                    "city"=>$response->json('localidade'),
+                    "state"=>$response->json('uf'),
+                    "ibge"=>$response->json('ibge'),
+                    "gia"=>$response->json('gia'),
+                    "ddd"=>$response->json('ddd'),
+                    "siafi"=>$response->json('siafi')
+                ]);
+                $adress = Adress::where('zip_code',$request->input('zip_code'))->first();
+            }else{
+                $error = 'CEP '.$request->input('zip_code').' Não encontrado!';
+            }
+        }
+
+        return redirect('/')
+        ->with('adress',$adress)
+        ->with('error',$error);
     }
 
     /**
