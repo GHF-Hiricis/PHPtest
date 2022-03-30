@@ -10,29 +10,50 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"
         integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
 
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}" />
+
     <title>PHP test</title>
 </head>
 
 <body>
-    <div class="container">
-        <div class="row">
-            <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                <a class="navbar-brand" href="/">PHP test</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav">
-                        <li class="nav-item active">
-                            <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/adress">Endereços</a>
-                        </li>
-                    </ul>
-                </div>
-            </nav>
+    <div class="container-fluid header">
+        <div class="container">
+            <div class="row">
+                <nav class="navbar navbar-expand-lg navbar-light">
+                    <a class="navbar-brand" href="/">PHP test</a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarNav">
+                        <ul class="navbar-nav">
+                            @if (session()->get('page') == 'home' || $page == 'home')
+                                <li class="nav-item active">
+                                @else
+                                <li class="nav-item">
+                            @endif
+                            <a class="nav-link" href="/">Home
+                                @if (session()->get('page') == 'home' || $page == 'home')
+                                    <span class="sr-only">(current)</span>
+                                @endif
+                            </a>
+                            </li>
+                            @if (session()->get('page') == 'adress' || $page == 'adress')
+                                <li class="nav-item active">
+                                @else
+                                <li class="nav-item">
+                            @endif
+                            <a class="nav-link" href="/adress">
+                                Endereços
+                                @if (session()->get('page') == 'adress' || $page == 'adress')
+                                    <span class="sr-only">(current)</span>
+                                @endif
+                            </a>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
         </div>
     </div>
 

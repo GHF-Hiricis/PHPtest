@@ -1,0 +1,100 @@
+html,
+body {
+    height: 100%;
+    background: #e1e0e0;
+}
+
+.header {
+    background: #00923F;
+    margin: 0px 0px 25px 0px;
+}
+
+.navbar-brand {
+    font-size: 2.25rem;
+}
+
+.nav-item .nav-link {
+    font-size: 22px;
+}
+
+.nav-item.active .nav-link {
+    font-weight: 600;
+}
+
+.home.card {
+    max-width: 480px;
+}
+
+.home.card .card-header {
+    font-size: 24px;
+    color: #00923f;
+}
+
+.home.card .card-text {
+    font-size: 16px;
+    line-height: 26px;
+    letter-spacing: 0.25px;
+    color: #7B838A;
+}
+
+.btn-1 {
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 20px;
+    text-align: center;
+    letter-spacing: 0.25px;
+    color: #FFFFFF;
+    background: #00923F;
+    border: 1px solid #00923F;
+    border-radius: 6px;
+    padding: 12px;
+}
+
+.btn-1:hover {
+    background-color: #ffffff;
+    color: #00923F;
+    /* transform: scale(1.05); */
+    box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .15) !important;
+}
+
+.form-container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 1px solid rgba(0, 0, 0, .125);
+    border-radius: .25rem;
+    padding: 25px 25px;
+}
+
+.form-control {
+    height: 50px;
+    color: #00923f;
+    border: 1px solid #00923f;
+}
+
+.card.adress {
+    margin: 15px;
+}
+
+.card.adress button {
+    color: #00923f;
+}
+
+.card.adress ul {
+    list-style: none;
+    padding: 0;
+}
+
+.card.adress ul li {
+    font-size: 16px;
+    line-height: 26px;
+    letter-spacing: 0.25px;
+    color: #7B838A;
+}
+.alert{
+    margin: 25px;
+}

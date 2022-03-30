@@ -16,7 +16,8 @@ class AdressesController extends Controller
     public function index()
     {
         return view('adresses')
-        ->with('adresses',Adress::orderBy('updated_at','DESC')->get());
+        ->with('adresses',Adress::orderBy('updated_at','DESC')->get())
+        ->with('page','adress');
     }
 
     /**
@@ -68,7 +69,8 @@ class AdressesController extends Controller
 
         return redirect('/')
         ->with('adress',$adress)
-        ->with('error',$error);
+        ->with('error',$error)
+        ->with('page','home');
     }
 
     /**

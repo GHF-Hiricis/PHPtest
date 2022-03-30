@@ -2,25 +2,40 @@
 
 @section('content')
     <div class="row">
-        <div class="col-12">
-            <div class="card">
+        <div class="col-xs-12 col-lg-6">
+            <div class="card home">
                 <h5 class="card-header">Olá quer consultar algum endereço?</h5>
                 <div class="card-body">
                     <h5 class="card-title">Este é um web site para consulta de endereços</h5>
                     <p class="card-text">
                         Digite o CEP que deseja consultar, e retornaremos o endereço
                     </p>
-                    <a href="/adress" class="btn btn-primary">Veja os CEPs já Consultados</a>
+                    <a href="/adress" class="btn btn-1">Veja os CEPs já Consultados</a>
                 </div>
             </div>
         </div>
-    </div>
 
-    <div class="row">
-        <div class="col-12">
+        <div class="col-xs-12 col-lg-5">
+
+            <div class="form-container">
+                <form action="/adress" method="POST">
+                    @csrf
+                    <div class="form-group">
+                        <div class="input-group">
+                            <input type="text" class="form-control cep" name="zip_code" id="inputCEP"
+                                placeholder="Digite o CEP que deseja consultar"
+                                aria-label="Digite o CEP que deseja consultar" aria-describedby="button-addon">
+                            <div class="input-group-append">
+                                <button class="btn btn-1" type="submit" id="button-addon">Consultar</button>
+                            </div>
+                        </div>
+
+                    </div>
+                </form>
+            </div>
 
             @if (session()->has('adress'))
-                <div class="card">
+                <div class="card adress">
                     <div class="card-header" id="heading-{{ session()->get('adress')->id }}">
                         <h2 class="mb-0">
                             <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse"
@@ -73,15 +88,6 @@
                     @endforeach
                 </div>
             @endif
-
-            <form action="/adress" method="POST">
-                @csrf
-                <div class="form-group">
-                    <label for="inputCEP">Digite o CEP que deseja consultar</label>
-                    <input type="text" class="form-control cep" name="zip_code" id="inputCEP" placeholder="">
-                </div>
-                <button type="submit" class="btn btn-primary">Consultar</button>
-            </form>
 
         </div>
     </div>

@@ -6,7 +6,7 @@
             <div class="accordion" id="accordion-adesses">
 
                 @foreach ($adresses as $item)
-                    <div class="card">
+                    <div class="card adress">
                         <div class="card-header" id="heading-{{ $item->id }}">
                             <h2 class="mb-0">
                                 <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse"
@@ -17,12 +17,14 @@
                             </h2>
                         </div>
 
-                        <div id="collapse-{{ $item->id }}" class="collapse show"
+                        <div id="collapse-{{ $item->id }}" class="collapse"
                             aria-labelledby="collapse-{{ $item->id }}" data-parent="#accordion-adesses">
                             <div class="card-body">
-                                <h5 class="card-title">
-                                    {{ $item->adress . ', ' . $item->neighborhood . ' - ' . $item->complement }}
-                                </h5>
+                                @if ($item->adress != '')
+                                    <h5 class="card-title">
+                                        {{ $item->adress . ', ' . $item->neighborhood . ' - ' . $item->complement }}
+                                    </h5>
+                                @endif
                                 <p class="card-text">
                                     {{ $item->city . ' - ' . $item->state }}
                                     <br />
